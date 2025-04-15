@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Favorites from "./Pages/Favorites";
 import Navbar from "./Components/Navbar";
 import { MovieProvider } from "./Contexts/MovieContexts";
+import MovieDetailsPage from "./Pages/MovieDetailsPage";
 
 import "./CSS/App.css";
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/movies/:id" element={<MovieDetailsPage />} />
         </Routes>
       </main>
     </MovieProvider>

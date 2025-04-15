@@ -26,3 +26,21 @@ export const searchMovies = async (query) => {
         return [];
     }
 };
+
+// Fetch detailed movie information (cast, director, runtime, etc.)
+export const getMovieDetails = async (movieId) => {
+    try {
+      const response = await fetch(
+        `${BASE_URL}/movie/${movieId}?api_key=${API_key}&append_to_response=credits`
+      );
+      const data = await response.json();
+      return {
+        ...data,
+        director: data.credits.crew.find(person => person.job === "Director")?.name,
+        cast: data.credits.cast.slice(0, 5).map(actor => actor.name)
+      };
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+      return null;
+    }
+  };
